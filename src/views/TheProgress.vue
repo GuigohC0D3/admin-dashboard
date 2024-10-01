@@ -16,6 +16,7 @@ import { onMounted, ref } from "vue";
 import { Minus, Plus } from "@element-plus/icons-vue";
 
 export default {
+    name: 'TheProgress',
   setup() {
     const percentage = ref(10);
     const percentage2 = ref(0);

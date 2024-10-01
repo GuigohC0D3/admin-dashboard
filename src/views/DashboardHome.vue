@@ -33,7 +33,7 @@
 import DashboardChart from './DashboardChart.vue';
 import TheProgress from './TheProgress.vue';
 export default {
-  nome: 'DashboardHome',
+  name: 'DashboardHome',
   components: {
     DashboardChart,
     TheProgress

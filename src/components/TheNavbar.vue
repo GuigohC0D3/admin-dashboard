@@ -29,6 +29,7 @@
 
 <script>
 export default {
+  name: 'TheNavbar',
   methods: {
     logout() {
       // Lógica para logout
