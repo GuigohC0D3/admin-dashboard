@@ -1,8 +1,7 @@
 <template>
     <div>
-    <h1>Oii teste guigo boy</h1>
+    <h2>Oi oi oi oi </h2>
     </div>
-    <router-view />
 </template>
 
 <script>

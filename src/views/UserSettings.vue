@@ -1,12 +1,12 @@
 <template>
     <div>
-    <h1>Oii teste guigo boy</h1>
+    <h1>Guigo teste boy</h1>
     </div>
-    <router-view />
 </template>
 
 <script>
 export default {
+    name: 'UserSettings',
     setup () {
         
 
