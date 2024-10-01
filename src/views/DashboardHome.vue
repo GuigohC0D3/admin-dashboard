@@ -23,16 +23,20 @@
     <div class="dashboard-charts">
       <h2>Visão Geral</h2>
       <DashboardChart />
+      <TheProgress />
     </div>
+    
   </div>
 </template>
 
 <script>
 import DashboardChart from './DashboardChart.vue';
+import TheProgress from './TheProgress.vue';
 export default {
   nome: 'DashboardHome',
   components: {
-    DashboardChart
+    DashboardChart,
+    TheProgress
   },
   data() {
     return {
