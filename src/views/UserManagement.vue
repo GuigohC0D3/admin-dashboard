@@ -23,7 +23,7 @@
           <td>{{ student.age }}</td>
           <td>
             <button @click="showStudent(student)" class="btn btn-primary">
-              Show
+              Info
             </button>
             <button @click="editStudent(student)" class="btn btn-info">
               Edit
