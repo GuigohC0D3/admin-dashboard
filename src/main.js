@@ -4,6 +4,7 @@ import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
 import router from './router';
 import * as ElementPlusIconsVue from '@element-plus/icons-vue';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const app = createApp(App);
 
