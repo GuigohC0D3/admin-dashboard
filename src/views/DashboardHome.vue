@@ -22,35 +22,17 @@
 
     <div class="dashboard-charts">
       <h2>Visão Geral</h2>
-      <div class="chart">
-        <Bar :chart-data="barChartData" :options="chartOptions" />
-      </div>
-      <div class="chart">
-        <Line :chart-data="lineChartData" :options="chartOptions" />
-      </div>
+      <DashboardChart />
     </div>
   </div>
 </template>
 
 <script>
-import { Bar, Line } from 'vue-chartjs';
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  BarElement,
-  LineElement,
-  CategoryScale,
-  LinearScale,
-} from 'chart.js';
-
-ChartJS.register(Title, Tooltip, Legend, BarElement, LineElement, CategoryScale, LinearScale);
-
+import DashboardChart from './DashboardChart.vue';
 export default {
+  nome: 'DashboardHome',
   components: {
-    Bar,
-    Line,
+    DashboardChart
   },
   data() {
     return {
@@ -58,38 +40,6 @@ export default {
       totalPosts: 120,
       totalComments: 300,
       recentFeedback: '5 feedbacks recentes',
-
-      // Dados para o gráfico de barras
-      barChartData: {
-        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'],
-        datasets: [
-          {
-            label: 'Usuários Novos',
-            backgroundColor: '#42A5F5',
-            data: [10, 20, 30, 15, 25],
-          },
-        ],
-      },
-
-      // Dados para o gráfico de linhas
-      lineChartData: {
-        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'],
-        datasets: [
-          {
-            label: 'Atividades',
-            borderColor: '#FFCA28',
-            backgroundColor: '#FFCA28',
-            data: [5, 15, 25, 20, 30],
-            fill: false,
-          },
-        ],
-      },
-
-      // Opções do gráfico
-      chartOptions: {
-        responsive: true,
-        maintainAspectRatio: false,
-      },
     };
   },
 };
