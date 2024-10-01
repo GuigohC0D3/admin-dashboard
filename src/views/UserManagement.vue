@@ -75,6 +75,7 @@ export default {
         { id: 3, firstname: "Pall", lastname: "Walker", age: 45 },
         { id: 4, firstname: "Emaly", lastname: "Kill", age: 22 },
         { id: 5, firstname: "Die", lastname: "Joi", age: 22 },
+        { id: 6, firstname: "Guilherme", lastname: "Pereira", age: 23 },
       ],
       newStudent: { id: null, firstname: "", lastname: "", age: null },
       showCreateModal: false,
