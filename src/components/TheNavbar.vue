@@ -2,6 +2,7 @@
   <nav class="navbar">
     <div class="navbar-container">
       <div class="navbar-brand">
+        <el-icon class="hamburger-icon" @click="toggleSidebar"><Menu /></el-icon>
         <h1>Admin Dashboard</h1>
       </div>
       <div class="navbar-search">
@@ -24,18 +25,38 @@
         <button @click="logout" class="navbar-button">Logout</button>
       </div>
     </div>
+
+    <!-- Sidebar -->
+    <div v-if="isSidebarVisible" class="sidebar">
+      <button class="close-btn" @click="toggleSidebar">&times;</button>
+      <router-link to="/dashboard" class="sidebar-link">Dashboard</router-link>
+      <router-link to="/users" class="sidebar-link">Users</router-link>
+      <router-link to="/reports" class="sidebar-link">Reports</router-link>
+      <router-link to="/settings" class="sidebar-link">Settings</router-link>
+    </div>
+
+    <!-- Overlay for closing the sidebar -->
+    <div v-if="isSidebarVisible" class="overlay" @click="toggleSidebar"></div>
   </nav>
 </template>
 
 <script>
 export default {
   name: 'TheNavbar',
+  data() {
+    return {
+      isSidebarVisible: false, // Estado para controlar a visibilidade da sidebar
+    };
+  },
   methods: {
+    toggleSidebar() {
+      this.isSidebarVisible = !this.isSidebarVisible; // Alterna a visibilidade da sidebar
+    },
     logout() {
       // Lógica para logout
       console.log('Logout');
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -54,6 +75,11 @@ export default {
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
 }
 
 .navbar-brand h1 {
@@ -75,7 +101,7 @@ export default {
 
 .search-input {
   width: 103%;
-  padding: 0.5rem 2.5rem 0.5rem 0.75rem; /* Espaço para o ícone */
+  padding: 0.5rem 2.5rem 0.5rem 0.75rem;
   border: none;
   border-radius: 5px;
 }
@@ -118,5 +144,61 @@ export default {
 
 .navbar-button:hover {
   background-color: #c0392b;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  background-color: #34495e;
+  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  z-index: 999;
+}
+
+.sidebar-link {
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+  display: block;
+}
+
+.sidebar-link:hover {
+  background-color: #1abc9c;
+  transition: 1s;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 36px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Overlay Styles */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+.hamburger-icon {
+  color: white;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  font-size: 24px;
 }
 </style>

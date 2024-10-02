@@ -7,7 +7,7 @@
         <p>{{ totalUsers }}</p>
       </div>
       <div class="card">
-        <h3>Total de Posts</h3>
+        <h3>Total de Itens</h3>
         <p>{{ totalPosts }}</p>
       </div>
       <div class="card">
@@ -23,6 +23,7 @@
     <div class="dashboard-charts">
       <h2>Visão Geral</h2>
       <DashboardChart />
+      <LineChart/>
       <TheProgress />
     </div>
     
@@ -31,19 +32,21 @@
 
 <script>
 import DashboardChart from './DashboardChart.vue';
+import LineChart from './LineChart.vue';
 import TheProgress from './TheProgress.vue';
 export default {
   name: 'DashboardHome',
   components: {
     DashboardChart,
-    TheProgress
+    TheProgress,
+    LineChart
   },
   data() {
     return {
       totalUsers: 150,
       totalPosts: 120,
       totalComments: 300,
-      recentFeedback: '5 feedbacks recentes',
+      recentFeedback: '200 feedbacks recentes',
     };
   },
 };

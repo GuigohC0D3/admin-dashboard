@@ -13,7 +13,7 @@ export default {
   name: "HomePage",
   components: {
     TheNavbar,
-    DashboardHome
+    DashboardHome,
   },
 };
 </script>
