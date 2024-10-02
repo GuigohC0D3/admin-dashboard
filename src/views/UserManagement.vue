@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Colaboradores</h1>
+    <h1>Vendedores</h1>
     <button @click="showCreateModal = true" class="btn btn-success">
       Create Student
     </button>
