@@ -43,7 +43,7 @@ export default {
 .navbar {
   background-color: #2c3e50;
   color: white;
-  padding: 1rem;
+  padding: 0.5rem;
   position: relative;
   cursor: pointer;
 }
@@ -58,6 +58,7 @@ export default {
 
 .navbar-brand h1 {
   margin: 0;
+  color: aliceblue;
 }
 
 .navbar-search {
@@ -73,7 +74,7 @@ export default {
 }
 
 .search-input {
-  width: 85%;
+  width: 103%;
   padding: 0.5rem 2.5rem 0.5rem 0.75rem; /* Espaço para o ícone */
   border: none;
   border-radius: 5px;
