@@ -22,9 +22,9 @@
 
     <div class="dashboard-charts">
       <h2>Visão Geral</h2>
+      <TheProgress />
       <DashboardChart />
       <LineChart/>
-      <TheProgress />
     </div>
     
   </div>
