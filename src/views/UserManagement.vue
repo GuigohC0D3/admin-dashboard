@@ -2,33 +2,39 @@
   <div>
     <h1>Vendedores</h1>
     <button @click="showCreateModal = true" class="btn btn-success">
-      Create Student
+      Create Member
     </button>
 
     <table class="table">
       <thead>
         <tr>
           <th>Id</th>
-          <th>Firstname</th>
-          <th>Lastname</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Username</th>
+          <th>CPF</th>
           <th>Age</th>
+          <th>Phone Number</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(student, index) in students" :key="student.id">
+        <tr v-for="(member, index) in members" :key="member.id">
           <td>{{ index + 1 }}</td>
-          <td>{{ student.firstname }}</td>
-          <td>{{ student.lastname }}</td>
-          <td>{{ student.age }}</td>
+          <td>{{ member.name }}</td>
+          <td>{{ member.email }}</td>
+          <td>{{ member.username }}</td>
+          <td>{{ member.CPF }}</td>
+          <td>{{ member.age }}</td>
+          <td>{{ member.phonenumber }}</td>
           <td>
-            <button @click="showStudent(student)" class="btn btn-primary">
+            <button @click="showMember(member)" class="btn btn-primary">
               Info
             </button>
-            <button @click="editStudent(student)" class="btn btn-info">
+            <button @click="editMember(member)" class="btn btn-info">
               Edit
             </button>
-            <button @click="deleteStudent(student.id)" class="btn btn-danger">
+            <button @click="deleteMember(member.id)" class="btn btn-danger">
               Delete
             </button>
           </td>
@@ -39,19 +45,31 @@
     <!-- Modal for Create/Edit -->
     <div v-if="showCreateModal" class="modal">
       <div class="modal-content">
-        <h3>{{ isEditing ? "Edit Student" : "Create Student" }}</h3>
-        <form @submit.prevent="isEditing ? updateStudent() : addStudent()">
+        <h3>{{ isEditing ? "Edit Member" : "Create Member" }}</h3>
+        <form @submit.prevent="isEditing ? updateMember() : addMember()">
           <div>
-            <label>Firstname:</label>
-            <input v-model="newStudent.firstname" required />
+            <label>Name:</label>
+            <input v-model="newMember.name" required />
           </div>
           <div>
-            <label>Lastname:</label>
-            <input v-model="newStudent.lastname" required />
+            <label>Email:</label>
+            <input v-model="newMember.email" required />
+          </div>
+          <div>
+            <label>Username:</label>
+            <input v-model="newMember.username" required />
+          </div>
+          <div>
+            <label>CPF:</label>
+            <input v-model="newMember.CPF" required />
           </div>
           <div>
             <label>Age:</label>
-            <input v-model="newStudent.age" type="number" required />
+            <input v-model="newMember.age" type="number" required />
+          </div>
+          <div>
+            <label>Phone Number:</label>
+            <input v-model="newMember.phonenumber" required />
           </div>
           <button type="submit" class="btn btn-success">
             {{ isEditing ? "Update" : "Create" }}
@@ -66,53 +84,60 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
-      students: [
-        { id: 1, firstname: "Harry", lastname: "Porter", age: 46 },
-        { id: 2, firstname: "Jonn", lastname: "Deep", age: 25 },
-        { id: 3, firstname: "Pall", lastname: "Walker", age: 45 },
-        { id: 4, firstname: "Emaly", lastname: "Kill", age: 22 },
-        { id: 5, firstname: "Die", lastname: "Joi", age: 22 },
-        { id: 6, firstname: "Guilherme", lastname: "Pereira", age: 23 },
-      ],
-      newStudent: { id: null, firstname: "", lastname: "", age: null },
+      members: [], // Array para armazenar membros vindos do backend
+      newMember: { id: null, name: "", email: "", username: "", CPF: "", age: null, phonenumber: "" },
       showCreateModal: false,
       isEditing: false,
       currentEditId: null,
     };
   },
+  created() {
+    // Chama a função para buscar os membros do backend quando o componente é montado
+    this.fetchMembers();
+  },
   methods: {
-    showStudent(student) {
+    async fetchMembers() {
+      try {
+        const response = await axios.get('http://localhost:3000/dados');
+        this.members = response.data; // Armazena os dados recebidos
+      } catch (error) {
+        console.error("Erro ao buscar membros:", error);
+      }
+    },
+    showMember(member) {
       alert(
-        `Student: ${student.firstname} ${student.lastname}, Age: ${student.age}`
+        `Member: ${member.name}, Email: ${member.email}, Username: ${member.username}, CPF: ${member.CPF}, Age: ${member.age}, Phone Number: ${member.phonenumber}`
       );
     },
-    addStudent() {
-      const newId = this.students.length + 1;
-      this.newStudent.id = newId;
-      this.students.push({ ...this.newStudent });
+    addMember() {
+      const newId = this.members.length + 1;
+      this.newMember.id = newId;
+      this.members.push({ ...this.newMember });
       this.resetForm();
     },
-    editStudent(student) {
-      this.newStudent = { ...student };
-      this.currentEditId = student.id;
+    editMember(member) {
+      this.newMember = { ...member };
+      this.currentEditId = member.id;
       this.isEditing = true;
       this.showCreateModal = true;
     },
-    updateStudent() {
-      const index = this.students.findIndex((s) => s.id === this.currentEditId);
+    updateMember() {
+      const index = this.members.findIndex((m) => m.id === this.currentEditId);
       if (index !== -1) {
-        this.students.splice(index, 1, { ...this.newStudent });
+        this.members.splice(index, 1, { ...this.newMember });
       }
       this.resetForm();
     },
-    deleteStudent(id) {
-      this.students = this.students.filter((student) => student.id !== id);
+    deleteMember(id) {
+      this.members = this.members.filter((member) => member.id !== id);
     },
     resetForm() {
-      this.newStudent = { id: null, firstname: "", lastname: "", age: null };
+      this.newMember = { id: null, name: "", email: "", username: "", CPF: "", age: null, phonenumber: "" };
       this.isEditing = false;
       this.showCreateModal = false;
       this.currentEditId = null;
