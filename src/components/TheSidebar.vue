@@ -9,7 +9,7 @@
       </li>
       <li class="sidebar-item">
         <router-link to="/users" class="sidebar-link">
-          <el-icon><User /></el-icon>
+          <i class="bi bi-twitter-x"></i>
           <span>Perfil</span>
         </router-link>
       </li>
