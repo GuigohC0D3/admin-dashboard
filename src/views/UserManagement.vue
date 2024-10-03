@@ -80,6 +80,10 @@
         </form>
       </div>
     </div>
+    <footer id="footer">
+    <h2>Guilherme Admin</h2>
+    <p>&copy; 2024 GuiBoard's, Inc.</p>
+    </footer>
   </div>
 </template>
 
@@ -211,5 +215,18 @@ th {
 .btn-secondary {
   background-color: grey;
   color: white;
+}
+
+#footer {
+    border-top: 2px solid #ddd;
+    padding: 1rem;
+    text-align: center;
+    background-color: #6d6060b4
+}
+
+#footer h2,
+#footer p {
+    margin-bottom: 1rem;
+    color: #fff;
 }
 </style>
