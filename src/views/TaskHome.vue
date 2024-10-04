@@ -22,7 +22,7 @@
       <ul>
         <li v-for="(user, index) in users" :key="index" class="user-item">
           <label>
-            <span :class="{ completd: user.completd }">{{ user.name }}</span>
+            <span :class="{ completed: user.completed }">{{ user.name }}</span>
           </label>
         </li>
       </ul>
