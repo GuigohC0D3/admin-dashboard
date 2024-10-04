@@ -23,7 +23,8 @@
     <div class="dashboard-charts">
       <h2>Visão Geral</h2>
       <TheProgress />
-      <DashboardChart />
+      <DashboardChart /> 
+      <TaskHome/>
       <LineChart/>
     </div>
     
@@ -33,13 +34,15 @@
 <script>
 import DashboardChart from './DashboardChart.vue';
 import LineChart from './LineChart.vue';
+import TaskHome from './TaskHome.vue';
 import TheProgress from './TheProgress.vue';
 export default {
   name: 'DashboardHome',
   components: {
     DashboardChart,
     TheProgress,
-    LineChart
+    LineChart,
+    TaskHome
   },
   data() {
     return {
