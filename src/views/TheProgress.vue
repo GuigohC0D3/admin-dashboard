@@ -1,7 +1,15 @@
 <template>
   <div class="demo-progress">
     <el-progress type="dashboard" :percentage="percentage2" :color="colors" />
-    <p></p>
+    <el-progress type="dashboard" :percentage="percentage2" :color="colors" />
+    <el-progress type="dashboard" :percentage="percentage2" :color="colors" />
+    <el-progress type="dashboard" :percentage="percentage2" :color="colors" />
+  </div>
+  <div id="column-vendas">
+  <p id="vendas">vendas</p> 
+  <p id="vendas">Vendas</p>
+  <p id="vendas">Vendas</p>
+  <p id="vendas">Vendas</p>
   </div>
 </template>
 
@@ -63,5 +71,12 @@ export default {
 }
 .demo-progress .el-progress--circle {
   margin-right: 15px;
+}
+
+#column-vendas {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: red;
 }
 </style>
