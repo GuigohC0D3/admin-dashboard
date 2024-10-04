@@ -26,11 +26,16 @@ export default {
             "Maio",
             "Junho",
             "Julho",
+            "Agosto",
+            "Setembro",
+            "Outubro",
+            "Novembro",
+            "Dezembro",
           ],
           datasets: [
             {
               label: "Vendas no Ano",
-              data: [40, 59, 80, 60, 70, 64, 102],
+              data: [40, 59, 80, 60, 70, 64, 102, 70, 50, 40, 60, 100],
               borderColor: "rgba(75, 192, 192, 1)",
               backgroundColor: "rgba(75, 192, 192, 0.2)",
               borderWidth: 2,
