@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Reported Items</h1>
+    <h1>Itens reportados</h1>
 
     <table class="table">
       <thead>
