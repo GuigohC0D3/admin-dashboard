@@ -3,7 +3,7 @@
     <div class="navbar-container">
       <div class="navbar-brand">
         <el-icon class="hamburger-icon" @click="toggleSidebar"><Menu /></el-icon>
-        <h1>Admin Dashboard</h1>
+        <h1>Guilherme Admin</h1>
       </div>
       <div class="navbar-search">
         <div class="search-wrapper">
@@ -96,7 +96,7 @@ export default {
 
 .search-wrapper {
   position: relative;
-  width: 300px;
+  width: 320px;
 }
 
 .search-input {
@@ -111,7 +111,7 @@ export default {
   right: 0.1%;
   top: 50%;
   transform: translateY(-50%);
-  color: rgb(0, 0, 0);
+  color: rgba(136, 121, 121, 0.89);
   font-size: 20px;
 }
 
