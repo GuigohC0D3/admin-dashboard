@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>Vendedores</h1>
+    <button @click="gohome" id="btn-icon"><i class="bi bi-arrow-left" ></i></button>
     <button @click="showCreateModal = true" class="btn btn-success">
       Create Member
     </button>
@@ -146,6 +147,9 @@ export default {
       this.showCreateModal = false;
       this.currentEditId = null;
     },
+    gohome() {
+      this.$router.push('/Home')
+    },
   },
 };
 </script>
@@ -228,5 +232,17 @@ th {
 #footer p {
     margin-bottom: 1rem;
     color: #fff;
+}
+
+#btn-icon {
+  color: rgb(0, 0, 0);
+  background-color: #fff;
+  border: none;
+  font-size: 40px;
+  margin-right: 85%
+}
+
+#btn-icon:hover {
+  color: #6d6060b4;
 }
 </style>
