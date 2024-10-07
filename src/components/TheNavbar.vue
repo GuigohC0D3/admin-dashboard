@@ -2,7 +2,9 @@
   <nav class="navbar">
     <div class="navbar-container">
       <div class="navbar-brand">
-        <el-icon class="hamburger-icon" @click="toggleSidebar"><Menu /></el-icon>
+        <el-icon class="hamburger-icon" @click="toggleSidebar"
+          ><Menu
+        /></el-icon>
         <h1>Guilherme Admin</h1>
       </div>
       <div class="navbar-search">
@@ -29,10 +31,22 @@
     <!-- Sidebar -->
     <div v-if="isSidebarVisible" class="sidebar">
       <button class="close-btn" @click="toggleSidebar">&times;</button>
-      <router-link to="/dashboard" class="sidebar-link">Dashboard</router-link>
-      <router-link to="/users" class="sidebar-link">Users</router-link>
-      <router-link to="/reports" class="sidebar-link">Reports</router-link>
-      <router-link to="/settings" class="sidebar-link">Settings</router-link>
+
+      <router-link to="/dashboard" class="sidebar-link">
+        <i class="bi bi-card-checklist"></i> Chamados TI
+      </router-link>
+
+      <router-link to="/users" class="sidebar-link">
+        <i class="bi bi-person"></i> Perfil
+      </router-link>
+
+      <router-link to="/reports" class="sidebar-link">
+        <i class="bi bi-file-text-fill"></i> Rules
+      </router-link>
+
+      <router-link to="/settings" class="sidebar-link">
+        <i class="bi bi-info-circle-fill"></i> Support
+      </router-link>
     </div>
 
     <!-- Overlay for closing the sidebar -->
@@ -42,7 +56,7 @@
 
 <script>
 export default {
-  name: 'TheNavbar',
+  name: "TheNavbar",
   data() {
     return {
       isSidebarVisible: false, // Estado para controlar a visibilidade da sidebar
@@ -54,7 +68,7 @@ export default {
     },
     logout() {
       // Lógica para logout
-      console.log('Logout');
+      console.log("Logout");
     },
   },
 };
