@@ -1,70 +1,128 @@
 <template>
-  <div>
-    <h1>Report members</h1>
+  <div class="report-page">
+    <h2>Report a Member</h2>
+    
+    <form @submit.prevent="submitReport">
+      <div class="form-group">
+        <label for="reporter">Your ID:</label>
+        <input type="number" v-model="reporter_id" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="reported_member">Reported Member:</label>
+        <select v-model="reported_member_id" required>
+          <option v-for="member in members" :key="member.id" :value="member.id">
+            {{ member.name }} ({{ member.email }})
+          </option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="reason">Reason for Report:</label>
+        <textarea v-model="report_reason" rows="4" required></textarea>
+      </div>
+      
+      <button type="submit">Submit Report</button>
+    </form>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Report ID</th>
-          <th>Item Name</th>
-          <th>Reported By</th>
-          <th>Description</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(report, index) in reports" :key="report.id">
-          <td>{{ index + 1 }}</td>
-          <td>{{ report.itemName }}</td>
-          <td>{{ report.reportedBy }}</td>
-          <td>{{ report.description }}</td>
-          <td>{{ report.date }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div v-if="message" class="message">
+      {{ message }}
+    </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 
 export default {
   data() {
     return {
-      reports: [],
+      reporter_id: null, // ID of the reporting user
+      reported_member_id: null, // ID of the member being reported
+      report_reason: '', // Reason for the report
+      members: [], // List of members to select from
+      message: '', // Feedback message for the user
     };
   },
+  created() {
+    this.fetchMembers(); // Fetch the members when the page loads
+  },
   methods: {
-    async fetchReports() {
+    async fetchMembers() {
       try {
-        const response = await axios.get("/api/reports");
-        this.reports = response.data;
+        const response = await axios.get('http://localhost:3000/dados');
+        this.members = response.data;
       } catch (error) {
-        console.error("Error fetching reports:", error);
+        console.error('Error fetching members:', error);
       }
     },
-  },
-  created() {
-    this.fetchReports();
-  },
+    async submitReport() {
+      try {
+        const report = {
+          reporter_id: this.reporter_id,
+          reported_member_id: this.reported_member_id,
+          report_reason: this.report_reason
+        };
+        await axios.post('http://localhost:3000/reports/create', report);
+        this.message = 'Report successfully submitted!';
+        this.resetForm();
+      } catch (error) {
+        console.error('Error submitting report:', error);
+        this.message = 'Error submitting report.';
+      }
+    },
+    resetForm() {
+      this.reporter_id = null;
+      this.reported_member_id = null;
+      this.report_reason = '';
+    }
+  }
 };
 </script>
 
 <style scoped>
-table {
+.report-page {
   width: 100%;
-  border-collapse: collapse;
-  margin: 20px 0;
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  background-color: #f4f4f4;
 }
 
-th,
-td {
-  border: 1px solid #ddd;
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
   padding: 8px;
-  text-align: left;
+  box-sizing: border-box;
 }
 
-th {
-  background-color: #f2f2f2;
+button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+.message {
+  margin-top: 20px;
+  font-weight: bold;
 }
 </style>
