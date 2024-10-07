@@ -173,6 +173,7 @@ export default {
   flex-direction: column;
   align-items: start;
   z-index: 999;
+  font-weight: bold;
 }
 
 .sidebar-link {
