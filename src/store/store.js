@@ -1,23 +1,34 @@
+// src/store/index.js
 import { createStore } from 'vuex';
 
-export default createStore({
+const store = createStore({
   state: {
-    user: null,
+    tasks: []
   },
   mutations: {
-    setUser(state, user) {
-      state.user = user;
+    ADD_TASK(state, task) {
+      state.tasks.push(task);
     },
+    TOGGLE_TASK(state, taskId) {
+      const task = state.tasks.find(t => t.id === taskId);
+      if (task) {
+        task.done = !task.done;
+      }
+    }
   },
   actions: {
-    login({ commit }, user) {
-      commit('setUser', user);
+    addTask({ commit }, task) {
+      commit('ADD_TASK', task);
     },
-    logout({ commit }) {
-      commit('setUser', null);
-    },
+    toggleTask({ commit }, taskId) {
+      commit('TOGGLE_TASK', taskId);
+    }
   },
   getters: {
-    isAuthenticated: state => !!state.user,
-  },
+    tasks(state) {
+      return state.tasks;
+    }
+  }
 });
+
+export default store;

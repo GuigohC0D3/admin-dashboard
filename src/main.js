@@ -7,6 +7,7 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import store from './store/store';
 
 
 const app = createApp(App);
@@ -17,5 +18,6 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 
 app.use(ElementPlus);
+app.use(store);
 app.use(router)  // Usa o Vue Router
 app.mount('#app');
